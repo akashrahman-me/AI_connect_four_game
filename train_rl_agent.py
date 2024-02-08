@@ -1,11 +1,9 @@
 from stable_baselines3 import DQN
 from stable_baselines3.common.env_util import make_vec_env
 from stable_baselines3.common.callbacks import CheckpointCallback 
+from gym_wrappers import ConnectFourGymEnv
 
-from game import Game  # Import your Game class 
-
-# Assuming you already have your 'Game' class defined 
-env = make_vec_env(lambda: Game(), n_envs=1)  # Create training environment
+env = make_vec_env(lambda: ConnectFourGymEnv(), n_envs=1) 
 
 model = DQN('MlpPolicy', env, verbose=1)  # Configure the DQN model
 model.learn(total_timesteps=100000)  # Train the agent train_rl_agent.py
@@ -14,8 +12,6 @@ model.learn(total_timesteps=100000)  # Train the agent train_rl_agent.py
 TOTAL_TRAINING_TIMESTEPS = 500000
 SAVE_MODEL_INTERVAL = 10000  # Save the model every 10000 training steps
 
-# Create the training environment (single environment at a time for now)
-env = make_vec_env(lambda: Game(), n_envs=1) 
 
 # Create the DQN model with a suitable network architecture ('MlpPolicy' is common)
 model = DQN('MlpPolicy', env, verbose=1, tensorboard_log="./tensorboard/")
