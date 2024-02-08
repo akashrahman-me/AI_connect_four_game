@@ -1,0 +1,19 @@
+#game-board {
+   display: grid;
+   grid-template-columns: repeat(7, 50px); /* 7 columns */
+   grid-template-rows: repeat(6, 50px); /* 6 rows */
+   border-collapse: collapse;
+}
+
+#game-board > div {
+   /* Each cell of the board */
+   width: 50px;
+   height: 50px;
+   border: 1px solid black;
+   border-radius: 50%; /* Create circular pieces */
+   background-color: white; /* Initially empty */
+}
+
+#status {
+   text-align: center;
+}
